@@ -14,13 +14,13 @@ struct ContentView: View {
         VStack{
             ScrollView{
                 cards
-                
             }
             Spacer()
             cardCountAdjusters
         }
         .padding()
     }
+    
     func cardCountAdjuster(by offset: Int, symbol:String) -> some View{
         Button(action: {
             cardCount += offset
@@ -30,6 +30,7 @@ struct ContentView: View {
         })
         .disabled(cardCount + offset < 1 || cardCount + offset > emojis.count)
     }
+    
     var cardRemover: some View{
         cardCountAdjuster(by: -1, symbol: "minus.rectangle")
     }
@@ -60,23 +61,19 @@ struct ContentView: View {
     }
     
     
-    
     struct CardView: View {
         
         @State private var isFaceUp = true
-        
         let content : String
-        
         var body: some View {
             
             ZStack {
-                
                 let base = RoundedRectangle(cornerRadius: 12)
                 
                 Group{
                     base.foregroundColor(.white)
                     base.strokeBorder(lineWidth: 2)
-                    Text(content ).font(.largeTitle)
+                    Text(content).font(.largeTitle)
                 }
                 .opacity(isFaceUp ? 1 : 0)
                 base.fill().opacity(isFaceUp ? 0 : 1)
@@ -88,8 +85,6 @@ struct ContentView: View {
             }
         }
     }
-    
-    
     
 }
 #Preview {
